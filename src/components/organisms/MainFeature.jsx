@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import ApperIcon from './ApperIcon';
-import dealService from '../services/api/dealService';
-import taskService from '../services/api/taskService';
-import contactService from '../services/api/contactService';
+import ApperIcon from '@/components/ApperIcon';
+import Text from '@/components/atoms/Text';
+import Button from '@/components/atoms/Button';
+import dealService from '@/services/api/dealService';
+import taskService from '@/services/api/taskService';
+import contactService from '@/services/api/contactService';
+import { getInitials, getAvatarColor } from '@/utils/avatarHelpers';
+import { isDueToday, isOverdue } from '@/utils/dateHelpers';
 
 const MainFeature = () => {
   const navigate = useNavigate();
@@ -38,7 +42,6 @@ const MainFeature = () => {
       setPipelineData(pipeline);
 
       // Upcoming tasks (next 3)
-      const today = new Date();
       const pendingTasks = tasks
         .filter(task => task.status !== 'completed')
         .sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate))
@@ -56,35 +59,6 @@ const MainFeature = () => {
     } finally {
       setLoading(false);
     }
-  };
-
-  const getInitials = (name) => {
-    return name.split(' ').map(n => n[0]).join('').toUpperCase();
-  };
-
-  const getAvatarColor = (name) => {
-    const colors = [
-      'bg-primary-500', 'bg-accent-500', 'bg-secondary-500', 
-      'bg-purple-500', 'bg-pink-500', 'bg-indigo-500'
-    ];
-    const index = name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-    return colors[index % colors.length];
-  };
-
-  const isDueToday = (dueDate) => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const due = new Date(dueDate);
-    due.setHours(0, 0, 0, 0);
-    return due.getTime() === today.getTime();
-  };
-
-  const isOverdue = (dueDate) => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const due = new Date(dueDate);
-    due.setHours(0, 0, 0, 0);
-    return due < today;
   };
 
   if (loading) {
@@ -115,24 +89,24 @@ const MainFeature = () => {
       transition={{ delay: 0.2 }}
       className="bg-white rounded-lg shadow-sm border border-surface-200 p-6"
     >
-      <h2 className="text-lg font-semibold text-surface-900 mb-6">Quick Overview</h2>
-      
+      <Text as="h2" className="text-lg font-semibold text-surface-900 mb-6">Quick Overview</Text>
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Pipeline Summary */}
         <div>
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-medium text-surface-700 flex items-center space-x-2">
+            <Text as="h3" className="font-medium text-surface-700 flex items-center space-x-2">
               <ApperIcon name="TrendingUp" size={16} className="text-primary-600" />
-              <span>Deal Pipeline</span>
-            </h3>
-            <button
+              <Text as="span">Deal Pipeline</Text>
+            </Text>
+            <Button
               onClick={() => navigate('/deals')}
-              className="text-sm text-primary-600 hover:text-primary-700 font-medium"
+              className="text-sm text-primary-600 hover:text-primary-700 font-medium bg-transparent hover:bg-transparent"
             >
               View All
-            </button>
+            </Button>
           </div>
-          
+
           <div className="space-y-3">
             {pipelineData.slice(0, 4).map((item, index) => (
               <motion.div
@@ -143,13 +117,13 @@ const MainFeature = () => {
                 className="flex items-center justify-between p-3 bg-surface-50 rounded-lg"
               >
                 <div>
-                  <div className="text-sm font-medium text-surface-900">{item.stage}</div>
-                  <div className="text-xs text-surface-500">{item.count} deals</div>
+                  <Text as="div" className="text-sm font-medium text-surface-900">{item.stage}</Text>
+                  <Text as="div" className="text-xs text-surface-500">{item.count} deals</Text>
                 </div>
                 <div className="text-right">
-                  <div className="text-sm font-semibold text-surface-900">
+                  <Text as="div" className="text-sm font-semibold text-surface-900">
                     ${item.value.toLocaleString()}
-                  </div>
+                  </Text>
                 </div>
               </motion.div>
             ))}
@@ -159,23 +133,23 @@ const MainFeature = () => {
         {/* Upcoming Tasks */}
         <div>
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-medium text-surface-700 flex items-center space-x-2">
+            <Text as="h3" className="font-medium text-surface-700 flex items-center space-x-2">
               <ApperIcon name="CheckSquare" size={16} className="text-accent-600" />
-              <span>Upcoming Tasks</span>
-            </h3>
-            <button
+              <Text as="span">Upcoming Tasks</Text>
+            </Text>
+            <Button
               onClick={() => navigate('/tasks')}
-              className="text-sm text-primary-600 hover:text-primary-700 font-medium"
+              className="text-sm text-primary-600 hover:text-primary-700 font-medium bg-transparent hover:bg-transparent"
             >
               View All
-            </button>
+            </Button>
           </div>
-          
+
           <div className="space-y-3">
             {upcomingTasks.length === 0 ? (
               <div className="text-center py-6">
                 <ApperIcon name="CheckSquare" className="w-8 h-8 text-surface-300 mx-auto mb-2" />
-                <p className="text-sm text-surface-500">No upcoming tasks</p>
+                <Text as="p" className="text-sm text-surface-500">No upcoming tasks</Text>
               </div>
             ) : (
               upcomingTasks.map((task, index) => (
@@ -191,15 +165,15 @@ const MainFeature = () => {
                     task.priority === 'medium' ? 'bg-warning' : 'bg-accent-500'
                   }`}></div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-sm font-medium text-surface-900 break-words">{task.title}</div>
-                    <div className={`text-xs mt-1 ${
+                    <Text as="div" className="text-sm font-medium text-surface-900 break-words">{task.title}</Text>
+                    <Text as="div" className={`text-xs mt-1 ${
                       isOverdue(task.dueDate) ? 'text-error' :
                       isDueToday(task.dueDate) ? 'text-warning' : 'text-surface-500'
                     }`}>
                       {isOverdue(task.dueDate) ? 'Overdue' :
                        isDueToday(task.dueDate) ? 'Due today' :
                        `Due ${new Date(task.dueDate).toLocaleDateString()}`}
-                    </div>
+                    </Text>
                   </div>
                 </motion.div>
               ))
@@ -210,23 +184,23 @@ const MainFeature = () => {
         {/* Recent Contacts */}
         <div>
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-medium text-surface-700 flex items-center space-x-2">
+            <Text as="h3" className="font-medium text-surface-700 flex items-center space-x-2">
               <ApperIcon name="Users" size={16} className="text-secondary-600" />
-              <span>Recent Contacts</span>
-            </h3>
-            <button
+              <Text as="span">Recent Contacts</Text>
+            </Text>
+            <Button
               onClick={() => navigate('/contacts')}
-              className="text-sm text-primary-600 hover:text-primary-700 font-medium"
+              className="text-sm text-primary-600 hover:text-primary-700 font-medium bg-transparent hover:bg-transparent"
             >
               View All
-            </button>
+            </Button>
           </div>
-          
+
           <div className="space-y-3">
             {recentContacts.length === 0 ? (
               <div className="text-center py-6">
                 <ApperIcon name="Users" className="w-8 h-8 text-surface-300 mx-auto mb-2" />
-                <p className="text-sm text-surface-500">No contacts yet</p>
+                <Text as="p" className="text-sm text-surface-500">No contacts yet</Text>
               </div>
             ) : (
               recentContacts.map((contact, index) => (
@@ -241,8 +215,8 @@ const MainFeature = () => {
                     {getInitials(contact.name)}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-sm font-medium text-surface-900 break-words">{contact.name}</div>
-                    <div className="text-xs text-surface-500 break-words">{contact.company || contact.email}</div>
+                    <Text as="div" className="text-sm font-medium text-surface-900 break-words">{contact.name}</Text>
+                    <Text as="div" className="text-xs text-surface-500 break-words">{contact.company || contact.email}</Text>
                   </div>
                 </motion.div>
               ))

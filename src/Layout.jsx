@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import ApperIcon from './components/ApperIcon';
-import { routeArray } from './config/routes';
+import ApperIcon from '@/components/ApperIcon';
+import { routeArray } from '@/config/routes';
 
 const Layout = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

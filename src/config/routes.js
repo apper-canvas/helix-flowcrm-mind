@@ -1,44 +1,51 @@
-import Dashboard from '../pages/Dashboard';
-import Contacts from '../pages/Contacts';
-import Deals from '../pages/Deals';
-import Tasks from '../pages/Tasks';
-import Calendar from '../pages/Calendar';
+import DashboardPage from '@/components/pages/DashboardPage';
+import ContactsPage from '@/components/pages/ContactsPage';
+import DealsPage from '@/components/pages/DealsPage';
+import TasksPage from '@/components/pages/TasksPage';
+import CalendarPage from '@/components/pages/CalendarPage';
+import NotFoundPage from '@/components/pages/NotFoundPage';
 
 export const routes = {
-  dashboard: {
+dashboard: {
     id: 'dashboard',
     label: 'Dashboard',
     path: '/dashboard',
     icon: 'LayoutDashboard',
-    component: Dashboard
+    component: DashboardPage
   },
   contacts: {
     id: 'contacts',
     label: 'Contacts',
     path: '/contacts',
     icon: 'Users',
-    component: Contacts
+    component: ContactsPage
   },
-  deals: {
+deals: {
     id: 'deals',
     label: 'Deals',
     path: '/deals',
     icon: 'TrendingUp',
-    component: Deals
+    component: DealsPage
   },
   tasks: {
     id: 'tasks',
     label: 'Tasks',
     path: '/tasks',
     icon: 'CheckSquare',
-    component: Tasks
+    component: TasksPage
   },
-  calendar: {
+calendar: {
     id: 'calendar',
     label: 'Calendar',
     path: '/calendar',
     icon: 'Calendar',
-    component: Calendar
+    component: CalendarPage
+  },
+  notFound: { // Add NotFoundPage to routes for consistent import
+    id: 'notFound',
+    label: 'Not Found',
+    path: '*',
+    component: NotFoundPage
   }
 };
 
