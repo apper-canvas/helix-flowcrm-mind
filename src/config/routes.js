@@ -3,6 +3,7 @@ import ContactsPage from '@/components/pages/ContactsPage';
 import DealsPage from '@/components/pages/DealsPage';
 import TasksPage from '@/components/pages/TasksPage';
 import CalendarPage from '@/components/pages/CalendarPage';
+import CompaniesPage from '@/components/pages/CompaniesPage';
 import NotFoundPage from '@/components/pages/NotFoundPage';
 
 export const routes = {
@@ -40,6 +41,13 @@ calendar: {
     path: '/calendar',
     icon: 'Calendar',
     component: CalendarPage
+  },
+  companies: {
+    id: 'companies',
+    label: 'Companies',
+    path: '/companies',
+    icon: 'Building2',
+    component: CompaniesPage
   },
   notFound: { // Add NotFoundPage to routes for consistent import
     id: 'notFound',
