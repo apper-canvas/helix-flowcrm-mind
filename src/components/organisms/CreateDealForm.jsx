@@ -38,7 +38,7 @@ const CreateDealForm = ({ onSubmit, onCancel, initialData, contacts, stages }) =
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <FormField label="Deal Title">
+<FormField label="Deal Title" required>
         <Input
           type="text"
           name="title"
@@ -48,14 +48,14 @@ const CreateDealForm = ({ onSubmit, onCancel, initialData, contacts, stages }) =
         />
       </FormField>
 
-      <FormField label="Value ($)">
+<FormField label="Value ($)" required>
         <Input
           type="number"
           name="value"
           required
           min="0"
           step="0.01"
-          value={formData.value}
+value={formData.value}
           onChange={handleChange}
         />
       </FormField>
@@ -69,12 +69,12 @@ const CreateDealForm = ({ onSubmit, onCancel, initialData, contacts, stages }) =
         />
       </FormField>
 
-      <FormField label="Contact">
+<FormField label="Contact" required>
         <Select
           name="contactId"
           required
           value={formData.contactId}
-          onChange={handleChange}
+onChange={handleChange}
           options={contactOptions}
         />
       </FormField>

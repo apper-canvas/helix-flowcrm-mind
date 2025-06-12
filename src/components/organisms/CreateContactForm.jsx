@@ -25,7 +25,7 @@ const CreateContactForm = ({ onSubmit, onCancel, initialData }) => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <FormField label="Name">
+<FormField label="Name" required>
         <Input
           type="text"
           name="name"
@@ -34,12 +34,12 @@ const CreateContactForm = ({ onSubmit, onCancel, initialData }) => {
           onChange={handleChange}
         />
       </FormField>
-      <FormField label="Email">
+<FormField label="Email" required>
         <Input
           type="email"
           name="email"
           required
-          value={formData.email}
+value={formData.email}
           onChange={handleChange}
         />
       </FormField>

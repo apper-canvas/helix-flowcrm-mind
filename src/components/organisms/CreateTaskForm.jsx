@@ -40,7 +40,7 @@ const CreateTaskForm = ({ onSubmit, onCancel, initialData, contacts, deals }) =>
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <FormField label="Task Title">
+<FormField label="Task Title" required>
         <Input
           type="text"
           name="title"
@@ -59,12 +59,12 @@ const CreateTaskForm = ({ onSubmit, onCancel, initialData, contacts, deals }) =>
         />
       </FormField>
 
-      <FormField label="Due Date">
+<FormField label="Due Date" required>
         <Input
           type="date"
           name="dueDate"
           required
-          value={formData.dueDate}
+value={formData.dueDate}
           onChange={handleChange}
         />
       </FormField>
