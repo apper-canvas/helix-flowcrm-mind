@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1",
+    "type": "email",
+    "contactId": "1",
+    "notes": "Sent follow-up email with pricing details and implementation timeline. Sarah confirmed budget approval and requested technical specifications document.",
+    "date": "2024-01-20T14:22:00.000Z"
+  },
+  {
+    "id": "2",
+    "type": "call",
+    "contactId": "2",
+    "notes": "45-minute discovery call discussing current pain points and requirements. Marcus is very interested in our API capabilities and scalability features.",
+    "date": "2024-01-25T11:45:00.000Z"
+  },
+  {
+    "id": "3",
+    "type": "meeting",
+    "contactId": "3",
+    "notes": "Product demo session with Emily and her team. They were impressed with the user interface and reporting capabilities. Requested competitive analysis.",
+    "date": "2024-01-28T10:30:00.000Z"
+  },
+  {
+    "id": "4",
+    "type": "email",
+    "contactId": "5",
+    "notes": "Contract signed and returned! Lisa expressed satisfaction with our security measures and is excited to begin implementation next week.",
+    "date": "2024-02-01T15:18:00.000Z"
+  },
+  {
+    "id": "5",
+    "type": "call",
+    "contactId": "1",
+    "notes": "Quick check-in call to confirm presentation schedule. Sarah mentioned two other stakeholders will join the meeting and requested additional ROI data.",
+    "date": "2024-02-05T09:30:00.000Z"
+  }
+]

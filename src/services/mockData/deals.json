@@ -1,0 +1,52 @@
+[
+  {
+    "id": "1",
+    "title": "TechCorp Enterprise Package",
+    "value": 85000,
+    "stage": "Proposal",
+    "contactId": "1",
+    "probability": 75,
+    "expectedClose": "2024-03-15",
+    "notes": "Waiting for legal review of contract terms. Sarah mentioned they need implementation by Q2 for maximum impact on their development cycles."
+  },
+  {
+    "id": "2",
+    "title": "InnovatePlus Platform Migration",
+    "value": 120000,
+    "stage": "Negotiation",
+    "contactId": "2",
+    "probability": 85,
+    "expectedClose": "2024-02-28",
+    "notes": "Final pricing discussions ongoing. Marcus is very interested but needs to align with CFO on payment terms. Ready to proceed with pilot program."
+  },
+  {
+    "id": "3",
+    "title": "StartupVentures Growth Plan",
+    "value": 45000,
+    "stage": "Qualified",
+    "contactId": "3",
+    "probability": 60,
+    "expectedClose": "2024-04-10",
+    "notes": "Emily is comparing us with two other vendors. Emphasized our startup-friendly pricing and rapid deployment capabilities during last call."
+  },
+  {
+    "id": "4",
+    "title": "Global Enterprises Multi-Region",
+    "value": 200000,
+    "stage": "Lead",
+    "contactId": "4",
+    "probability": 40,
+    "expectedClose": "2024-05-20",
+    "notes": "Large enterprise deal requiring multi-language support and advanced analytics. David needs to present to executive committee for approval."
+  },
+  {
+    "id": "5",
+    "title": "Thompson Consulting Professional",
+    "value": 25000,
+    "stage": "Closed Won",
+    "contactId": "5",
+    "probability": 100,
+    "expectedClose": "2024-02-01",
+    "notes": "Deal closed successfully! Lisa was impressed with our security features and compliance certifications. Implementation starts next week."
+  }
+]

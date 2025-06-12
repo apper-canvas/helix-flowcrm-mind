@@ -1,0 +1,52 @@
+[
+  {
+    "id": "1",
+    "name": "Sarah Mitchell",
+    "email": "sarah.mitchell@techcorp.com",
+    "phone": "+1 (555) 123-4567",
+    "company": "TechCorp Solutions",
+    "notes": "VP of Engineering, interested in our enterprise solution. Prefers email communication and has decision-making authority for tools over $50k annually.",
+    "createdAt": "2024-01-15T10:30:00.000Z",
+    "lastInteraction": "2024-01-20T14:22:00.000Z"
+  },
+  {
+    "id": "2",
+    "name": "Marcus Johnson",
+    "email": "m.johnson@innovateplus.com",
+    "phone": "+1 (555) 234-5678",
+    "company": "InnovatePlus",
+    "notes": "CTO looking to modernize their customer service platform. Team of 25+ developers. Budget approved for Q2 implementation.",
+    "createdAt": "2024-01-18T09:15:00.000Z",
+    "lastInteraction": "2024-01-25T11:45:00.000Z"
+  },
+  {
+    "id": "3",
+    "name": "Emily Chen",
+    "email": "emily.chen@startupventures.io",
+    "phone": "+1 (555) 345-6789",
+    "company": "StartupVentures",
+    "notes": "Operations Manager at fast-growing fintech startup. Needs scalable CRM solution for 100+ person sales team. Very responsive to demos.",
+    "createdAt": "2024-01-22T16:45:00.000Z",
+    "lastInteraction": "2024-01-28T10:30:00.000Z"
+  },
+  {
+    "id": "4",
+    "name": "David Rodriguez",
+    "email": "david.rodriguez@globalenterprises.com",
+    "phone": "+1 (555) 456-7890",
+    "company": "Global Enterprises",
+    "notes": "Senior Sales Director managing international accounts. Requires multi-language support and advanced reporting capabilities for regional teams.",
+    "createdAt": "2024-01-25T13:20:00.000Z",
+    "lastInteraction": null
+  },
+  {
+    "id": "5",
+    "name": "Lisa Thompson",
+    "email": "lisa.thompson@consultinggroup.net",
+    "phone": "+1 (555) 567-8901",
+    "company": "Thompson Consulting Group",
+    "notes": "Managing Partner interested in CRM for client relationship management. Small but high-value client base. Values data security and compliance features.",
+    "createdAt": "2024-01-28T11:10:00.000Z",
+    "lastInteraction": "2024-02-01T15:18:00.000Z"
+  }
+]
