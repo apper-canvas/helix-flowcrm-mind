@@ -4,7 +4,6 @@ import DealsPage from '@/components/pages/DealsPage';
 import TasksPage from '@/components/pages/TasksPage';
 import CalendarPage from '@/components/pages/CalendarPage';
 import CompaniesPage from '@/components/pages/CompaniesPage';
-import NotFoundPage from '@/components/pages/NotFoundPage';
 
 export const routes = {
 dashboard: {
@@ -46,15 +45,9 @@ calendar: {
     id: 'companies',
     label: 'Companies',
     path: '/companies',
-    icon: 'Building2',
+icon: 'Building2',
     component: CompaniesPage
   },
-  notFound: { // Add NotFoundPage to routes for consistent import
-    id: 'notFound',
-    label: 'Not Found',
-    path: '*',
-    component: NotFoundPage
-  }
 };
 
 export const routeArray = Object.values(routes);
