@@ -21,7 +21,7 @@ const CreateCompanyForm = ({ initialData, onSubmit, onCancel }) => {
     description: initialData?.description || ''
   });
 
-  const [errors, setErrors] = useState({});
+const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
@@ -154,24 +154,26 @@ const CreateCompanyForm = ({ initialData, onSubmit, onCancel }) => {
           />
         </FormField>
 
-        <FormField label="Company Size">
+<FormField label="Company Size">
           <Select
             name="size"
             value={formData.size}
             onChange={handleChange}
           >
+            <option value="">Select Company Size...</option>
             <option value="Small">Small (1-50 employees)</option>
             <option value="Medium">Medium (51-200 employees)</option>
             <option value="Large">Large (200+ employees)</option>
           </Select>
         </FormField>
 
-        <FormField label="Status">
+<FormField label="Status">
           <Select
             name="status"
             value={formData.status}
             onChange={handleChange}
           >
+            <option value="">Select Status...</option>
             <option value="Prospect">Prospect</option>
             <option value="Active">Active</option>
             <option value="Inactive">Inactive</option>
