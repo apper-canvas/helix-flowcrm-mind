@@ -1,8 +1,19 @@
-import { isToday as isDateToday } from 'date-fns';
+import { isToday as isDateToday, isBefore, startOfDay } from 'date-fns';
 
 // Check if a date is today
 export function isToday(date) {
   return isDateToday(date);
+}
+
+// Check if a date is due today (alias for isToday for semantic clarity)
+export function isDueToday(date) {
+  return isToday(date);
+}
+
+// Check if a date is overdue (before today)
+export function isOverdue(date) {
+  if (!date) return false;
+  return isBefore(startOfDay(new Date(date)), startOfDay(new Date()));
 }
 
 // Priority color mapping
@@ -18,6 +29,7 @@ export function getPriorityColor(priority) {
       return 'bg-gray-100 text-gray-800';
   }
 }
+
 // Priority label mapping
 export function getPriorityLabel(priority) {
   switch (priority?.toLowerCase()) {
