@@ -159,12 +159,13 @@ const [errors, setErrors] = useState({});
             name="size"
             value={formData.size}
             onChange={handleChange}
-          >
-            <option value="">Select Company Size...</option>
-            <option value="Small">Small (1-50 employees)</option>
-            <option value="Medium">Medium (51-200 employees)</option>
-            <option value="Large">Large (200+ employees)</option>
-          </Select>
+            options={[
+              { value: "", label: "Select Company Size..." },
+              { value: "Small", label: "Small (1-50 employees)" },
+              { value: "Medium", label: "Medium (51-200 employees)" },
+              { value: "Large", label: "Large (200+ employees)" }
+            ]}
+          />
         </FormField>
 
 <FormField label="Status">
@@ -172,12 +173,13 @@ const [errors, setErrors] = useState({});
             name="status"
             value={formData.status}
             onChange={handleChange}
-          >
-            <option value="">Select Status...</option>
-            <option value="Prospect">Prospect</option>
-            <option value="Active">Active</option>
-            <option value="Inactive">Inactive</option>
-          </Select>
+            options={[
+              { value: "", label: "Select Status..." },
+              { value: "Prospect", label: "Prospect" },
+              { value: "Active", label: "Active" },
+              { value: "Inactive", label: "Inactive" }
+            ]}
+          />
         </FormField>
 
         <FormField
