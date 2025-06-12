@@ -38,7 +38,7 @@ const TasksPage = () => {
 
   useEffect(() => {
     loadData();
-  }, [loadData]);
+}, [loadData]);
 
   const handleCreateTask = async (formData) => {
     try {
@@ -50,32 +50,34 @@ const TasksPage = () => {
       toast.error('Failed to create task');
     }
   };
-
-  const handleToggleComplete = async (taskId) => {
-    const task = tasks.find(t => t.id === taskId);
+const handleToggleComplete = async (taskId) => {
+    const task = tasks.find(t => (t.Id || t.id) === taskId);
+    if (!task) {
+      toast.error('Task not found');
+      return;
+    }
+    
     const newStatus = task.status === 'completed' ? 'pending' : 'completed';
 
     try {
       const updatedTask = await taskService.update(taskId, { status: newStatus });
-      setTasks(tasks.map(t => t.id === taskId ? updatedTask : t));
+      setTasks(tasks.map(t => (t.Id || t.id) === taskId ? updatedTask : t));
       toast.success(`Task ${newStatus === 'completed' ? 'completed' : 'reopened'}`);
     } catch (err) {
       toast.error('Failed to update task');
     }
   };
-
-  const handleDeleteTask = async (taskId) => {
+const handleDeleteTask = async (taskId) => {
     if (!window.confirm('Are you sure you want to delete this task?')) return;
 
     try {
       await taskService.delete(taskId);
-      setTasks(tasks.filter(t => t.id !== taskId));
+      setTasks(tasks.filter(t => (t.Id || t.id) !== taskId));
       toast.success('Task deleted successfully');
     } catch (err) {
       toast.error('Failed to delete task');
     }
   };
-
   return (
     <>
       <TaskList

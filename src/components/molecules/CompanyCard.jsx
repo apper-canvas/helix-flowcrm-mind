@@ -36,7 +36,7 @@ const CompanyCard = ({ company, onEdit, onDelete }) => {
             <ApperIcon name="Building2" size={24} className="text-primary-600" />
           </div>
           <div>
-            <h3 className="font-semibold text-surface-900">{company.name}</h3>
+<h3 className="font-semibold text-surface-900">{company.Name || company.name}</h3>
             <p className="text-sm text-surface-600">{company.industry}</p>
           </div>
         </div>
@@ -59,15 +59,15 @@ const CompanyCard = ({ company, onEdit, onDelete }) => {
       <div className="space-y-3 mb-4">
         <div className="flex items-center justify-between">
           <span className="text-sm text-surface-600">Employees</span>
-          <span className="text-sm font-medium">{company.employees}</span>
+<span className="text-sm font-medium">{company.employees}</span>
         </div>
         <div className="flex items-center justify-between">
           <span className="text-sm text-surface-600">Revenue</span>
-          <span className="text-sm font-medium">{formatRevenue(company.revenue)}</span>
+<span className="text-sm font-medium">{formatRevenue(company.revenue)}</span>
         </div>
         <div className="flex items-center justify-between">
           <span className="text-sm text-surface-600">Contact</span>
-          <span className="text-sm font-medium">{company.contactPerson}</span>
+<span className="text-sm font-medium">{company.contact_person || company.contactPerson}</span>
         </div>
       </div>
 

@@ -19,19 +19,17 @@ const TaskList = ({
   error
 }) => {
 
-  const getContactName = (contactId) => {
+const getContactName = (contactId) => {
     if (!contactId) return '';
-    const contact = contacts.find(c => c.id === contactId);
-    return contact ? contact.name : 'Unknown Contact';
+    const contact = contacts.find(c => (c.Id || c.id) === contactId || (c.Id || c.id) === String(contactId));
+    return contact ? (contact.Name || contact.name) : 'Unknown Contact';
   };
-
-  const getDealTitle = (dealId) => {
+const getDealTitle = (dealId) => {
     if (!dealId) return '';
-    const deal = deals.find(d => d.id === dealId);
-    return deal ? deal.title : 'Unknown Deal';
+    const deal = deals.find(d => (d.Id || d.id) === dealId || (d.Id || d.id) === String(dealId));
+    return deal ? (deal.title || deal.Name) : 'Unknown Deal';
   };
-
-  const filterTasks = () => {
+const filterTasks = () => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
@@ -43,20 +41,20 @@ const TaskList = ({
     switch (filter) {
       case 'today':
         filtered = tasks.filter(task => {
-          const dueDate = new Date(task.dueDate);
+          const dueDate = new Date(task.due_date || task.dueDate);
           dueDate.setHours(0, 0, 0, 0);
           return dueDate.getTime() === today.getTime() && task.status !== 'completed';
         });
         break;
       case 'week':
         filtered = tasks.filter(task => {
-          const dueDate = new Date(task.dueDate);
+          const dueDate = new Date(task.due_date || task.dueDate);
           return dueDate >= today && dueDate <= nextWeek && task.status !== 'completed';
         });
         break;
       case 'overdue':
         filtered = tasks.filter(task => {
-          const dueDate = new Date(task.dueDate);
+          const dueDate = new Date(task.due_date || task.dueDate);
           return dueDate < today && task.status !== 'completed';
         });
         break;
@@ -68,8 +66,8 @@ const TaskList = ({
     }
 
     filtered.sort((a, b) => {
-      const dateA = new Date(a.dueDate);
-      const dateB = new Date(b.dueDate);
+      const dateA = new Date(a.due_date || a.dueDate);
+      const dateB = new Date(b.due_date || b.dueDate);
       if (dateA.getTime() !== dateB.getTime()) {
         return dateA - dateB;
       }
@@ -82,7 +80,7 @@ const TaskList = ({
 
   const filteredTasks = filterTasks();
 
-  const getTaskCountForFilter = (filterId) => {
+const getTaskCountForFilter = (filterId) => {
     const tempFilter = filter; // Temporarily set filter to calculate count
     const tempTasks = [...tasks]; // Use actual tasks array
     let count = 0;
@@ -92,7 +90,7 @@ const TaskList = ({
         count = tempTasks.filter(t => t.status !== 'completed').length;
         break;
       case 'today':
-        count = tempTasks.filter(t => isDueToday(t.dueDate) && t.status !== 'completed').length;
+        count = tempTasks.filter(t => isDueToday(t.due_date || t.dueDate) && t.status !== 'completed').length;
         break;
       case 'week':
         count = tempTasks.filter(t => {
@@ -100,23 +98,21 @@ const TaskList = ({
           today.setHours(0, 0, 0, 0);
           const nextWeek = new Date(today);
           nextWeek.setDate(nextWeek.getDate() + 7);
-          const dueDate = new Date(t.dueDate);
+          const dueDate = new Date(t.due_date || t.dueDate);
           return dueDate >= today && dueDate <= nextWeek && t.status !== 'completed';
         }).length;
         break;
       case 'overdue':
-        count = tempTasks.filter(t => isOverdue(t.dueDate) && t.status !== 'completed').length;
+        count = tempTasks.filter(t => isOverdue(t.due_date || t.dueDate) && t.status !== 'completed').length;
         break;
       case 'completed':
         count = tempTasks.filter(t => t.status === 'completed').length;
         break;
       default:
         count = 0;
-    }
+}
     return count;
   };
-
-
   if (loading) {
     return (
       <div className="p-6 space-y-6">

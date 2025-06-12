@@ -35,7 +35,7 @@ const CompaniesPage = () => {
     }
   };
 
-  const handleCreateCompany = async (companyData) => {
+const handleCreateCompany = async (companyData) => {
     try {
       const newCompany = await companyService.create(companyData);
       setCompanies(prev => [newCompany, ...prev]);
@@ -50,11 +50,10 @@ const CompaniesPage = () => {
     setEditingCompany(company);
     setIsEditModalOpen(true);
   };
-
-  const handleUpdateCompany = async (companyData) => {
+const handleUpdateCompany = async (companyData) => {
     try {
-      const updatedCompany = await companyService.update(editingCompany.id, companyData);
-      setCompanies(prev => prev.map(c => c.id === editingCompany.id ? updatedCompany : c));
+      const updatedCompany = await companyService.update(editingCompany.Id || editingCompany.id, companyData);
+      setCompanies(prev => prev.map(c => (c.Id || c.id) === (editingCompany.Id || editingCompany.id) ? updatedCompany : c));
       setIsEditModalOpen(false);
       setEditingCompany(null);
       toast.success('Company updated successfully');
@@ -67,14 +66,13 @@ const CompaniesPage = () => {
     if (window.confirm('Are you sure you want to delete this company?')) {
       try {
         await companyService.delete(companyId);
-        setCompanies(prev => prev.filter(c => c.id !== companyId));
+        setCompanies(prev => prev.filter(c => (c.Id || c.id) !== companyId));
         toast.success('Company deleted successfully');
       } catch (error) {
         toast.error('Failed to delete company');
       }
     }
   };
-
   const filteredCompanies = companies.filter(company => {
     const matchesSearch = company.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          company.industry.toLowerCase().includes(searchTerm.toLowerCase());

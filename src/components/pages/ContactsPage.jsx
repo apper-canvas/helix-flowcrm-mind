@@ -44,12 +44,12 @@ const ContactsPage = () => {
     setFilteredContacts(filtered);
   }, [contacts, searchTerm]);
 
-  const handleCreateContact = async (formData) => {
+const handleCreateContact = async (formData) => {
     try {
       const newContact = await contactService.create({
         ...formData,
-        createdAt: new Date().toISOString(),
-        lastInteraction: null
+        created_at: new Date().toISOString(),
+        last_interaction: null
       });
       setContacts([...contacts, newContact]);
       setShowCreateModal(false);
@@ -59,19 +59,19 @@ const ContactsPage = () => {
     }
   };
 
-  const handleLogInteraction = async (interactionData) => {
+const handleLogInteraction = async (interactionData) => {
     try {
       const interaction = await interactionService.create({
         ...interactionData,
-        contactId: selectedContact.id,
+        contact_id: selectedContact.Id || selectedContact.id,
         date: new Date().toISOString()
       });
 
-      const updatedContact = await contactService.update(selectedContact.id, {
-        lastInteraction: interaction.date
+      const updatedContact = await contactService.update(selectedContact.Id || selectedContact.id, {
+        last_interaction: interaction.date
       });
 
-      setContacts(contacts.map(c => c.id === selectedContact.id ? updatedContact : c));
+      setContacts(contacts.map(c => (c.Id || c.id) === (selectedContact.Id || selectedContact.id) ? updatedContact : c));
       setShowInteractionModal(false);
       setSelectedContact(null);
       toast.success('Interaction logged successfully');
@@ -80,12 +80,12 @@ const ContactsPage = () => {
     }
   };
 
-  const handleDeleteContact = async (contactId) => {
+const handleDeleteContact = async (contactId) => {
     if (!window.confirm('Are you sure you want to delete this contact?')) return;
 
     try {
       await contactService.delete(contactId);
-      setContacts(contacts.filter(c => c.id !== contactId));
+      setContacts(contacts.filter(c => (c.Id || c.id) !== contactId));
       toast.success('Contact deleted successfully');
     } catch (err) {
       toast.error('Failed to delete contact');

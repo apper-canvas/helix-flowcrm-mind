@@ -16,17 +16,17 @@ const DealPipeline = ({
   error
 }) => {
 
-  const getContactName = (contactId) => {
-    const contact = contacts.find(c => c.id === contactId);
-    return contact ? contact.name : 'Unknown Contact';
+const getContactName = (contactId) => {
+    const contact = contacts.find(c => (c.Id || c.id) === contactId || (c.Id || c.id) === String(contactId));
+    return contact ? (contact.Name || contact.name) : 'Unknown Contact';
   };
 
   const getStageDeals = (stageId) => {
     return deals.filter(deal => deal.stage === stageId);
   };
 
-  const getStageValue = (stageId) => {
-    return getStageDeals(stageId).reduce((sum, deal) => sum + deal.value, 0);
+const getStageValue = (stageId) => {
+    return getStageDeals(stageId).reduce((sum, deal) => sum + (deal.value || 0), 0);
   };
 
   const handleDragStart = (e, dealId) => {

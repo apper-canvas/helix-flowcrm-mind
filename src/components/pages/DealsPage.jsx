@@ -42,7 +42,7 @@ const DealsPage = () => {
 
   useEffect(() => {
     loadData();
-  }, [loadData]);
+}, [loadData]);
 
   const handleCreateDeal = async (formData) => {
     try {
@@ -64,7 +64,7 @@ const DealsPage = () => {
 
     try {
       const updatedDeal = await dealService.update(dealId, { stage: newStage });
-      setDeals(deals.map(deal => deal.id === dealId ? updatedDeal : deal));
+      setDeals(deals.map(deal => (deal.Id || deal.id) === dealId ? updatedDeal : deal));
       toast.success(`Deal moved to ${newStage}`);
     } catch (err) {
       toast.error('Failed to update deal');
@@ -76,13 +76,12 @@ const DealsPage = () => {
 
     try {
       await dealService.delete(dealId);
-      setDeals(deals.filter(d => d.id !== dealId));
+      setDeals(deals.filter(d => (d.Id || d.id) !== dealId));
       toast.success('Deal deleted successfully');
     } catch (err) {
       toast.error('Failed to delete deal');
     }
   };
-
   return (
     <>
       <DealPipeline

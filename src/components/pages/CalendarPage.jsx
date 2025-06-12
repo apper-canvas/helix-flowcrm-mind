@@ -54,15 +54,20 @@ const CalendarPage = () => {
     const newDate = new Date(currentDate);
     newDate.setDate(currentDate.getDate() + direction);
     setCurrentDate(newDate);
-  };
+};
 
   const handleTaskComplete = async (taskId) => {
-    const task = tasks.find(t => t.id === taskId);
+    const task = tasks.find(t => (t.Id || t.id) === taskId);
+    if (!task) {
+      toast.error('Task not found');
+      return;
+    }
+    
     const newStatus = task.status === 'completed' ? 'pending' : 'completed';
 
     try {
       const updatedTask = await taskService.update(taskId, { status: newStatus });
-      setTasks(tasks.map(t => t.id === taskId ? updatedTask : t));
+      setTasks(tasks.map(t => (t.Id || t.id) === taskId ? updatedTask : t));
       toast.success(`Task ${newStatus === 'completed' ? 'completed' : 'reopened'}`);
     } catch (err) {
       toast.error('Failed to update task');
